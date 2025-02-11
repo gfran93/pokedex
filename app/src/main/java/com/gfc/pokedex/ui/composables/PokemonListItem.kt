@@ -3,13 +3,15 @@ package com.gfc.pokedex.ui.composables
 import androidx.compose.foundation.layout.Row
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import com.gfc.pokedex.R
 import com.gfc.pokedex.domain.model.Pokemon
 
 @Composable
 fun PokemonListItem(pokemon: Pokemon) = Row {
     with(pokemon) {
-        Text(text = id.toString())
+        Text(text = stringResource(R.string.number, id))
         Text(text = name)
     }
 }

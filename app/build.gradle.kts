@@ -51,6 +51,7 @@ android {
 
 dependencies {
     implementation(libs.retrofit.converter)
+    implementation(libs.hilt.navigation)
     implementation(libs.hilt)
     ksp(libs.hilt.compiler)
     implementation(libs.coroutines)
@@ -58,6 +59,7 @@ dependencies {
     implementation(libs.room.runtime)
     ksp(libs.room.compiler)
     implementation(libs.retrofit)
+    implementation(libs.androidx.navigation)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)

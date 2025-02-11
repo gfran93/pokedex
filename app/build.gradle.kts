@@ -50,6 +50,7 @@ android {
 }
 
 dependencies {
+    implementation(libs.retrofit.converter)
     implementation(libs.hilt)
     ksp(libs.hilt.compiler)
     implementation(libs.coroutines)

@@ -4,5 +4,6 @@ import com.gfc.pokedex.domain.model.Pokemon
 
 data class PokemonListState(
     val pokemons: List<Pokemon> = listOf(),
-    val searchQuery: String = "",
+    val filteredPokemons: List<Pokemon> = listOf(),
+    val searchTerm: String = "",
 )

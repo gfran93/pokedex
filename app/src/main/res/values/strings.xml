@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Pokedex</string>
     <string name="number">No: %1$d</string>
+    <string name="search_pokemon">Buscar pokemon:</string>
 </resources>

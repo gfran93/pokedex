@@ -48,6 +48,7 @@ fun PokedexApp(modifier: Modifier = Modifier) {
             PokemonListScreen(
                 navController = navController,
                 state = viewModel.state.collectAsState().value,
+                onSearchTermChanged = { viewModel.searchTermUpdated(it) }
             )
         }
     }

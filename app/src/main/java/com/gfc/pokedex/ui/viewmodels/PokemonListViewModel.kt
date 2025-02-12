@@ -25,7 +25,7 @@ class PokemonListViewModel @Inject constructor(
 
     init {
         loadPokemonList()
-        fetchAndSavePokemon()
+        fetchAndSaveAllPokemonData()
     }
 
     private fun launchWithExceptionHandler(block: suspend CoroutineScope.() -> Unit) {
@@ -48,8 +48,9 @@ class PokemonListViewModel @Inject constructor(
             }
     }
 
-    private fun fetchAndSavePokemon() = launchWithExceptionHandler {
+    private fun fetchAndSaveAllPokemonData() = launchWithExceptionHandler {
         repository.fetchAndSavePokemonList()
+        repository.fetchAndSavePokemonDetails()
     }
 
     fun searchTermUpdated(newSearchTerm: String) {

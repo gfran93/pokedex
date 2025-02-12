@@ -1,5 +1,6 @@
 package com.gfc.pokedex.data.local.entities
 
+import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.gfc.pokedex.domain.model.Pokemon
@@ -8,11 +9,20 @@ import com.gfc.pokedex.domain.model.Pokemon
 data class PokemonEntity(
     @PrimaryKey val id: Int,
     val name: String,
+    val weight: Int?,
+    val height: Int?,
+    @ColumnInfo("base_experience")
+    val baseExperience: Int?,
+    val specie: String?,
 )
 
 fun PokemonEntity.toPokemon(): Pokemon {
     return Pokemon(
-        id = this.id,
-        name = this.name,
+        id = id,
+        name = name,
+        weight = weight,
+        height = height,
+        baseExperience = baseExperience,
+        specie = specie
     )
 }

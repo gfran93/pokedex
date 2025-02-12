@@ -23,8 +23,8 @@ fun PokemonListScreen(
     state: PokemonListState,
     onSearchTermChanged: (String) -> Unit,
 ) {
-    Column (modifier = modifier.fillMaxWidth()) {
-        TextField (
+    Column(modifier = modifier.fillMaxWidth()) {
+        TextField(
             modifier = Modifier.fillMaxWidth(),
             value = state.searchTerm,
             onValueChange = onSearchTermChanged,
@@ -46,6 +46,15 @@ fun PokemonListScreenPreview() = PokemonListScreen(
     navController = rememberNavController(),
     state = PokemonListState(
         searchTerm = "Pokemon",
-        pokemons = listOf(Pokemon(id = 1, name = "bulbasaur"))
+        pokemons = listOf(
+            Pokemon(
+                id = 1,
+                name = "bulbasaur",
+                weight = null,
+                height = null,
+                baseExperience = null,
+                specie = null,
+            )
+        )
     )
 ) {}

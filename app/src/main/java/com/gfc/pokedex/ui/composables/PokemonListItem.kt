@@ -31,4 +31,12 @@ fun PokemonListItem(
 
 @Composable
 @Preview
-fun PokemonListItemPreview() = PokemonListItem(pokemon = Pokemon(id = 1, name = "Bulbasaur"))
+fun PokemonListItemPreview() = PokemonListItem(
+    pokemon = Pokemon(
+        id = 1, name = "Bulbasaur",
+        weight = null,
+        height = null,
+        baseExperience = null,
+        specie = null,
+    )
+)

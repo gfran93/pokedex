@@ -5,6 +5,7 @@ import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.ForeignKey.Companion.CASCADE
 import androidx.room.PrimaryKey
+import com.gfc.pokedex.domain.model.PokemonType
 
 @Entity(
     tableName = "pokemon_type",
@@ -22,4 +23,9 @@ data class PokemonTypeEntity(
     val pokemonId: Int,
     val slot: Int,
     val type: String
+)
+
+fun PokemonTypeEntity.toPokemonType(): PokemonType = PokemonType(
+    slot = slot,
+    type = type,
 )

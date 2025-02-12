@@ -5,9 +5,11 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import androidx.room.Transaction
 import androidx.room.Update
 import com.gfc.pokedex.data.local.entities.PokemonAbilityEntity
 import com.gfc.pokedex.data.local.entities.PokemonTypeEntity
+import com.gfc.pokedex.data.local.entities.PokemonWithDetails
 import kotlinx.coroutines.flow.Flow
 
 @Dao
@@ -21,9 +23,6 @@ interface PokemonDao {
     @Query("SELECT * FROM pokemon")
     fun getAllPokemon(): Flow<List<PokemonEntity>>
 
-    @Query("SELECT * FROM pokemon WHERE id = :id")
-    fun getPokemonById(id: Int): Flow<PokemonEntity?>
-
     @Query("SELECT id FROM pokemon")
     suspend fun getAllPokemonIds(): List<Int>
 
@@ -35,4 +34,8 @@ interface PokemonDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAbilities(abilities: List<PokemonAbilityEntity>)
+
+    @Transaction
+    @Query("SELECT * FROM pokemon WHERE id = :pokemonId")
+    fun getPokemonWithDetails(pokemonId: Int): Flow<PokemonWithDetails>
 }

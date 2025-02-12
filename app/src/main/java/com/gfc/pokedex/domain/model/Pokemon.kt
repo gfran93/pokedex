@@ -7,4 +7,6 @@ data class Pokemon(
     val height: Int?,
     val baseExperience: Int?,
     val specie: String?,
+    val types: List<PokemonType>?,
+    val abilities: List<PokemonAbility>?,
 )

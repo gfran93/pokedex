@@ -41,5 +41,7 @@ fun PokemonListItemPreview() = PokemonListItem(
         height = null,
         baseExperience = null,
         specie = null,
+        types = null,
+        abilities = null,
     )
 ) {}

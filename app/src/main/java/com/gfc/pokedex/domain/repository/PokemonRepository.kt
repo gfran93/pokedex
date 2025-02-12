@@ -28,10 +28,10 @@ class PokemonRepository @Inject constructor(
         }
 
     fun getPokemonById(pokemonId: Int): Flow<Pokemon> = pokemonDao
-        .getPokemonById(pokemonId)
+        .getPokemonWithDetails(pokemonId)
         .filterNotNull()
-        .map { pokemonEntity ->
-            pokemonEntity.toPokemon()
+        .map { pokemonWithDetails ->
+            pokemonWithDetails.toPokemon()
         }
 
     suspend fun fetchAndSavePokemonList() = withContext(Dispatchers.IO) {

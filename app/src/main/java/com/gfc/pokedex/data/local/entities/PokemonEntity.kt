@@ -23,6 +23,8 @@ fun PokemonEntity.toPokemon(): Pokemon {
         weight = weight,
         height = height,
         baseExperience = baseExperience,
-        specie = specie
+        specie = specie,
+        types = null,
+        abilities = null,
     )
 }

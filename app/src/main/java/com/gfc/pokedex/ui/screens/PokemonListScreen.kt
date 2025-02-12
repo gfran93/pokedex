@@ -60,6 +60,8 @@ fun PokemonListScreenPreview() = PokemonListScreen(
                 height = null,
                 baseExperience = null,
                 specie = null,
+                types = null,
+                abilities = null,
             )
         )
     )

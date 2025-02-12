@@ -13,6 +13,7 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.gfc.pokedex.R
 import com.gfc.pokedex.domain.model.Pokemon
+import com.gfc.pokedex.ui.Screens
 import com.gfc.pokedex.ui.composables.PokemonListItem
 import com.gfc.pokedex.ui.states.PokemonListState
 
@@ -33,7 +34,12 @@ fun PokemonListScreen(
         LazyColumn {
             state.pokemons.forEach { pokemon ->
                 item {
-                    PokemonListItem(pokemon = pokemon)
+                    PokemonListItem(
+                        pokemon = pokemon,
+                        onItemClicked = {
+                            navController.navigate(Screens.PokemonDetails.route)
+                        }
+                    )
                 }
             }
         }

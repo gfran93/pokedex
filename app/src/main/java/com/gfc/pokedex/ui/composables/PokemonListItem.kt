@@ -1,5 +1,6 @@
 package com.gfc.pokedex.ui.composables
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -17,10 +18,12 @@ import com.gfc.pokedex.domain.model.Pokemon
 fun PokemonListItem(
     modifier: Modifier = Modifier,
     pokemon: Pokemon,
+    onItemClicked: (Pokemon) -> Unit,
 ) = Column(
     modifier = modifier
         .padding(all = 8.dp)
-        .fillMaxWidth(),
+        .fillMaxWidth()
+        .clickable { onItemClicked(pokemon) },
     horizontalAlignment = Alignment.CenterHorizontally
 ) {
     with(pokemon) {
@@ -39,4 +42,4 @@ fun PokemonListItemPreview() = PokemonListItem(
         baseExperience = null,
         specie = null,
     )
-)
+) {}

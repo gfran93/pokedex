@@ -7,16 +7,9 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
-import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
-import com.gfc.pokedex.ui.screens.PokemonListScreen
+import com.gfc.pokedex.ui.navigation.NavigationStack
 import com.gfc.pokedex.ui.theme.PokedexTheme
-import com.gfc.pokedex.ui.viewmodels.PokemonListViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -27,29 +20,9 @@ class MainActivity : ComponentActivity() {
         setContent {
             PokedexTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    PokedexApp(modifier = Modifier.padding(innerPadding))
+                    NavigationStack(modifier = Modifier.padding(innerPadding))
                 }
             }
-        }
-    }
-}
-
-@Composable
-fun PokedexApp(modifier: Modifier = Modifier) {
-    val navController = rememberNavController()
-
-    NavHost(
-        modifier = modifier,
-        navController = navController,
-        startDestination = Screens.PokemonList.route
-    ) {
-        composable(Screens.PokemonList.route) {
-            val viewModel: PokemonListViewModel = hiltViewModel()
-            PokemonListScreen(
-                navController = navController,
-                state = viewModel.state.collectAsState().value,
-                onSearchTermChanged = { viewModel.searchTermUpdated(it) }
-            )
         }
     }
 }

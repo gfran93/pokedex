@@ -37,6 +37,7 @@ retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit
 retrofit-converter = { module = "com.squareup.retrofit2:converter-gson", version.ref = "retrofit"}
 room-compiler = { module = "androidx.room:room-compiler", version.ref = "room"}
 room-runtime = { module = "androidx.room:room-runtime", version.ref = "room"}
+room-ktx = { module = "androidx.room:room-ktx", version.ref = "room"}
 coil = { module = "io.coil-kt.coil3:coil-compose", version.ref = "coil"}
 coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "coroutines"}
 coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "coroutines"}

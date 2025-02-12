@@ -50,11 +50,14 @@ android {
 }
 
 dependencies {
+    implementation(libs.workmanager)
     implementation(libs.retrofit.converter)
+    implementation(libs.hilt.work)
     implementation(libs.hilt.navigation)
     implementation(libs.hilt)
     ksp(libs.hilt.compiler)
     implementation(libs.coroutines)
+    implementation(libs.coil.network)
     implementation(libs.coil)
     implementation(libs.room.runtime)
     implementation(libs.room.ktx)

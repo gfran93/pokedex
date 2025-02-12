@@ -26,5 +26,6 @@ fun PokemonEntity.toPokemon(): Pokemon {
         specie = specie,
         types = null,
         abilities = null,
+        imageFileName = null,
     )
 }

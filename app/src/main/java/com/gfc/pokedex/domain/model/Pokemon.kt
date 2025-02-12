@@ -9,4 +9,5 @@ data class Pokemon(
     val specie: String?,
     val types: List<PokemonType>?,
     val abilities: List<PokemonAbility>?,
+    val imageFileName: String?,
 )

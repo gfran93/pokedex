@@ -14,9 +14,10 @@ coil = "3.1.0"
 coroutines = "1.10.1"
 ksp = "2.1.10-1.0.29"
 hilt = "2.55"
-hilt-navigation="1.2.0"
+hilt-group="1.2.0"
 navigation = "2.8.6"
 mockk = "1.13.16"
+workmanager = "2.10.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -39,13 +40,16 @@ room-compiler = { module = "androidx.room:room-compiler", version.ref = "room"}
 room-runtime = { module = "androidx.room:room-runtime", version.ref = "room"}
 room-ktx = { module = "androidx.room:room-ktx", version.ref = "room"}
 coil = { module = "io.coil-kt.coil3:coil-compose", version.ref = "coil"}
+coil-network = { module = "io.coil-kt.coil3:coil-network-okhttp", version.ref = "coil" }
 coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "coroutines"}
 coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "coroutines"}
 hilt = { module = "com.google.dagger:hilt-android", version.ref = "hilt" }
 hilt-compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "hilt" }
-hilt-navigation = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "hilt-navigation" }
+hilt-navigation = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "hilt-group" }
+hilt-work = { module = "androidx.hilt:hilt-work", version.ref = "hilt-group" }
 androidx-navigation = {module = "androidx.navigation:navigation-compose", version.ref = "navigation" }
 mockk = {module = "io.mockk:mockk", version.ref = "mockk"}
+workmanager= { module = "androidx.work:work-runtime-ktx", version.ref="workmanager"}
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

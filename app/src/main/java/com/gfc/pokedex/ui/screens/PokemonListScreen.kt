@@ -62,6 +62,7 @@ fun PokemonListScreenPreview() = PokemonListScreen(
                 specie = null,
                 types = null,
                 abilities = null,
+                imageFileName = null,
             )
         )
     )

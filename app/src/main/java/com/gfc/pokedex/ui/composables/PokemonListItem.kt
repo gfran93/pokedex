@@ -43,5 +43,6 @@ fun PokemonListItemPreview() = PokemonListItem(
         specie = null,
         types = null,
         abilities = null,
+        imageFileName = null,
     )
 ) {}

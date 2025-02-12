@@ -1,5 +1,10 @@
 package com.gfc.pokedex.domain.repository
 
+import androidx.work.Data
+import androidx.work.OneTimeWorkRequestBuilder
+import androidx.work.WorkManager
+import com.gfc.pokedex.data.POKEMON_ID_PLACEHOLDER
+import com.gfc.pokedex.data.POKEMON_IMAGE_LOCAL_FILENAME
 import com.gfc.pokedex.data.local.entities.toPokemon
 import com.gfc.pokedex.data.local.service.PokemonDao
 import com.gfc.pokedex.data.remote.mappers.toAbilityEntities
@@ -7,6 +12,7 @@ import com.gfc.pokedex.data.remote.mappers.toPokemonEntity
 import com.gfc.pokedex.data.remote.mappers.toTypeEntities
 import com.gfc.pokedex.data.remote.model.PokemonListItem
 import com.gfc.pokedex.data.remote.service.PokeApiService
+import com.gfc.pokedex.data.worker.ImageDownloadWorker
 import com.gfc.pokedex.domain.model.Pokemon
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
@@ -18,6 +24,8 @@ import javax.inject.Inject
 class PokemonRepository @Inject constructor(
     private val pokeApiService: PokeApiService,
     private val pokemonDao: PokemonDao,
+    private val workManager: WorkManager,
+    private val filesDirPath: String,
 ) {
     fun getAllPokemon(): Flow<List<Pokemon>> = pokemonDao
         .getAllPokemon()
@@ -31,7 +39,11 @@ class PokemonRepository @Inject constructor(
         .getPokemonWithDetails(pokemonId)
         .filterNotNull()
         .map { pokemonWithDetails ->
-            pokemonWithDetails.toPokemon()
+            pokemonWithDetails.toPokemon().copy(
+                imageFileName = "$filesDirPath/" + POKEMON_IMAGE_LOCAL_FILENAME.replace(
+                    POKEMON_ID_PLACEHOLDER, pokemonId.toString()
+                )
+            )
         }
 
     suspend fun fetchAndSavePokemonList() = withContext(Dispatchers.IO) {
@@ -57,6 +69,20 @@ class PokemonRepository @Inject constructor(
                 insertTypes(pokemonResponse.toTypeEntities())
                 insertAbilities(pokemonResponse.toAbilityEntities())
             }
+        }
+    }
+
+    suspend fun enqueuePokemonImageDownload() = withContext(Dispatchers.IO) {
+        val pokemonIds = pokemonDao.getAllPokemonIds()
+        pokemonIds.forEach { pokemonId ->
+            val data = Data.Builder()
+                .putInt("pokemonId", pokemonId)
+                .build()
+
+            val workRequest = OneTimeWorkRequestBuilder<ImageDownloadWorker>()
+                .setInputData(data)
+                .build()
+            workManager.enqueue(workRequest)
         }
     }
 }

@@ -7,6 +7,7 @@ import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
@@ -42,7 +43,13 @@ class PokemonListViewModel @Inject constructor(
 
     private fun fetchAndSaveAllPokemonData() = launchWithExceptionHandler {
         repository.fetchAndSavePokemonList()
-        repository.fetchAndSavePokemonDetails()
+        val detailsJob = launch { repository.fetchAndSavePokemonDetails() }
+        val imageJob = launch {
+            repository.enqueuePokemonImageDownload()
+        }
+
+        detailsJob.join()
+        imageJob.join()
     }
 
     fun searchTermUpdated(newSearchTerm: String) {

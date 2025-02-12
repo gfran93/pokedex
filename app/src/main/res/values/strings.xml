@@ -2,4 +2,9 @@
     <string name="app_name">Pokedex</string>
     <string name="number">No: %1$d</string>
     <string name="search_pokemon">Buscar pokemon:</string>
+    <string name="pokemon_name">Nombre: %s</string>
+    <string name="pokemon_weight">Peso: %d kg</string>
+    <string name="pokemon_height">Altura: %d m</string>
+    <string name="pokemon_base_experience">Experiencia: %d</string>
+    <string name="pokemon_species">Especie: %s</string>
 </resources>

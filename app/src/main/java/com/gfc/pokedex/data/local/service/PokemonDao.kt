@@ -22,7 +22,7 @@ interface PokemonDao {
     fun getAllPokemon(): Flow<List<PokemonEntity>>
 
     @Query("SELECT * FROM pokemon WHERE id = :id")
-    suspend fun getPokemonById(id: Int): PokemonEntity?
+    fun getPokemonById(id: Int): Flow<PokemonEntity?>
 
     @Query("SELECT id FROM pokemon")
     suspend fun getAllPokemonIds(): List<Int>

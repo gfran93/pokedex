@@ -36,8 +36,8 @@ fun PokemonListScreen(
                 item {
                     PokemonListItem(
                         pokemon = pokemon,
-                        onItemClicked = {
-                            navController.navigate(Screens.PokemonDetails.route)
+                        onItemClicked = { pokemon ->
+                            navController.navigate(Screens.PokemonDetails.createRoute(pokemon.id))
                         }
                     )
                 }

@@ -1,16 +1,17 @@
 package com.gfc.pokedex.domain.repository
 
+import com.gfc.pokedex.data.local.entities.toPokemon
 import com.gfc.pokedex.data.local.service.PokemonDao
+import com.gfc.pokedex.data.remote.mappers.toAbilityEntities
 import com.gfc.pokedex.data.remote.mappers.toPokemonEntity
+import com.gfc.pokedex.data.remote.mappers.toTypeEntities
 import com.gfc.pokedex.data.remote.model.PokemonListItem
 import com.gfc.pokedex.data.remote.service.PokeApiService
 import com.gfc.pokedex.domain.model.Pokemon
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.map
-import com.gfc.pokedex.data.local.entities.toPokemon
-import com.gfc.pokedex.data.remote.mappers.toAbilityEntities
-import com.gfc.pokedex.data.remote.mappers.toTypeEntities
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.filterNotNull
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
@@ -24,6 +25,13 @@ class PokemonRepository @Inject constructor(
             pokemonEntities.map { pokemonEntity ->
                 pokemonEntity.toPokemon()
             }
+        }
+
+    fun getPokemonById(pokemonId: Int): Flow<Pokemon> = pokemonDao
+        .getPokemonById(pokemonId)
+        .filterNotNull()
+        .map { pokemonEntity ->
+            pokemonEntity.toPokemon()
         }
 
     suspend fun fetchAndSavePokemonList() = withContext(Dispatchers.IO) {
